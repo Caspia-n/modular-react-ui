@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "react-grid-layout/css/styles.css";
+@import "react-resizable/css/styles.css";
+
 :root {
   --bg-canvas: hsl(240, 10%, 3.9%);
   --bg-surface: hsl(240, 10%, 7.8%);
@@ -26,4 +29,29 @@
   #__next {
     height: 100%;
   }
+}
+
+.grid-canvas {
+  background: var(--bg-canvas);
+  border-radius: 0.5rem;
+}
+
+.grid-item {
+  cursor: move;
+  user-select: none;
+  transition: all 0.15s ease-out;
+}
+
+.grid-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.react-grid-item > .react-resizing {
+  opacity: 0.9;
+}
+
+.react-grid-placeholder {
+  background: var(--accent);
+  opacity: 0.2;
+  border-radius: 0.25rem;
 }

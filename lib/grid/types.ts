@@ -1,4 +1,4 @@
-export type GridItemType = string;
+export type GridItemType = 'text' | 'image' | 'chart' | 'stat' | 'table';
 
 export interface GridItemStyle {
   backgroundColor?: string;
@@ -19,20 +19,17 @@ export interface GridItem {
   y: number;
   w: number;
   h: number;
-  content?: unknown;
-  style?: GridItemStyle;
+  content?: any;
+  style: GridItemStyle;
   locked?: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BreakpointLayout {
-  breakpoint: string;
-  cols: number;
-  items: Array<Pick<GridItem, 'id' | 'x' | 'y' | 'w' | 'h'>>;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface GridLayoutSettings {
+  snapToGrid?: boolean;
+  showGrid?: boolean;
+  gridSize?: number;
   rowHeight?: number;
   margin?: [number, number];
   containerPadding?: [number, number];
@@ -43,10 +40,14 @@ export interface GridLayoutSettings {
 export interface GridLayout {
   id: string;
   name: string;
-  version: number;
+  version: string;
   items: GridItem[];
-  breakpoints: Record<string, BreakpointLayout>;
-  settings?: GridLayoutSettings;
-  createdAt: string;
-  updatedAt: string;
+  breakpoints: {
+    desktop: number;
+    tablet: number;
+    mobile: number;
+  };
+  settings: GridLayoutSettings;
+  createdAt: number;
+  updatedAt: number;
 }
