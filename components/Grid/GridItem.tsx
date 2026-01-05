@@ -1,11 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { GridItem as GridItemType } from '@/lib/grid/types';
+import { GridItem as GridItemType, GridItemStyle } from '@/lib/grid/types';
 import { getBlockComponent, getBlockEditor } from '@/lib/blocks/registry';
 import { BlockContextMenu } from '@/components/Blocks/BlockContextMenu';
 import { useState } from 'react';
-import { useGrid } from '@/hooks/useGrid';
+import { useGrid } from '@/context/GridContext';
 
 export interface GridItemProps {
   item: GridItemType;
@@ -20,11 +20,20 @@ export function GridItem({ item, isSelected, onClick }: GridItemProps) {
   const [showEditor, setShowEditor] = useState(false);
   const [showContextMenu, setShowContextMenu] = useState(false);
 
-  const handleUpdate = (updates: Partial<GridItemType>) => {
-    if (updates.props) {
+  const handleUpdate = (updates: Partial<GridItemType> | { props?: Record<string, any>; style?: GridItemStyle }) => {
+    // Handle updates from block components (which use 'props' instead of 'content')
+    let content: Record<string, any> | undefined;
+    
+    if ('props' in updates) {
+      content = updates.props;
+    } else if ('content' in updates) {
+      content = updates.content;
+    }
+    
+    if (content) {
       dispatch({
         type: 'UPDATE_ITEM_CONTENT',
-        payload: { id: item.id, content: updates.props },
+        payload: { id: item.id, content },
       });
     }
     if (updates.style) {
