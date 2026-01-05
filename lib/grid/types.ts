@@ -19,34 +19,20 @@ export interface GridItem {
   y: number;
   w: number;
   h: number;
-  content?: unknown;
+  content?: Record<string, any>;
   style?: GridItemStyle;
   locked?: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BreakpointLayout {
-  breakpoint: string;
-  cols: number;
-  items: Array<Pick<GridItem, 'id' | 'x' | 'y' | 'w' | 'h'>>;
-}
-
-export interface GridLayoutSettings {
-  rowHeight?: number;
-  margin?: [number, number];
-  containerPadding?: [number, number];
-  isDraggable?: boolean;
-  isResizable?: boolean;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface GridLayout {
   id: string;
   name: string;
-  version: number;
+  version: string;
   items: GridItem[];
-  breakpoints: Record<string, BreakpointLayout>;
-  settings?: GridLayoutSettings;
-  createdAt: string;
-  updatedAt: string;
+  breakpoints: { desktop: number; tablet: number; mobile: number };
+  settings: { snapToGrid: boolean; showGrid: boolean; gridSize: number };
+  createdAt: number;
+  updatedAt: number;
 }
