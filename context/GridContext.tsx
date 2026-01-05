@@ -11,7 +11,7 @@ export interface GridContextValue {
   currentBreakpoint: 'desktop' | 'tablet' | 'mobile';
 }
 
-const GridContext = createContext<GridContextValue | null>(null);
+export const GridContext = createContext<GridContextValue | null>(null);
 
 interface GridProviderProps {
   children: ReactNode;

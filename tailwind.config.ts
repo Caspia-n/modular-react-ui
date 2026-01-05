@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss';
 import { heroui } from '@heroui/theme/plugin';
 
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -20,11 +20,7 @@ const config: Config = {
       }
     }
   },
-  plugins: [heroui()],
-  // Add these to fix the module resolution
-  experimental: {
-    optimizePackageImports: ['@heroui/theme']
-  }
+  plugins: [heroui()]
 };
 
 export default config;
