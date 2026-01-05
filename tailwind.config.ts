@@ -20,7 +20,11 @@ const config: Config = {
       }
     }
   },
-  plugins: [heroui()]
+  plugins: [heroui()],
+  // Add these to fix the module resolution
+  experimental: {
+    optimizePackageImports: ['@heroui/theme']
+  }
 };
 
 export default config;

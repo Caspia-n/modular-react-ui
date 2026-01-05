@@ -21,6 +21,7 @@
     "@eslint/eslintrc": "^3.3.3",
     "@heroui/theme": "^2.4.25",
     "@tailwindcss/postcss": "^4.1.18",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
