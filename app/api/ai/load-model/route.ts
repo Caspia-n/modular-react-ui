@@ -71,13 +71,10 @@ class MockLlamaCppClient {
     {
       "type": "add",
       "componentType": "text",
-      "id": "ai_generated_" + Date.now(),
-      "position": {
-        "x": 0,
-        "y": 0,
-        "w": 4,
-        "h": 3
-      },
+      "x": 0,
+      "y": 0,
+      "w": 4,
+      "h": 3,
       "content": {
         "text": "AI generated text content",
         "fontSize": 18,
@@ -100,10 +97,8 @@ class MockLlamaCppClient {
     {
       "type": "move",
       "id": "existing_item_id",
-      "position": {
-        "x": 2,
-        "y": 1
-      },
+      "x": 2,
+      "y": 1,
       "reason": "Optimizing layout flow"
     }
   ],
@@ -120,13 +115,10 @@ class MockLlamaCppClient {
     {
       "type": "add",
       "componentType": "text",
-      "id": "ai_suggestion_" + Date.now(),
-      "position": {
-        "x": 0,
-        "y": 0,
-        "w": 6,
-        "h": 4
-      },
+      "x": 0,
+      "y": 0,
+      "w": 6,
+      "h": 4,
       "content": {
         "text": "AI Assistant suggestion: Consider adding a text block for better content organization.",
         "fontSize": 16,

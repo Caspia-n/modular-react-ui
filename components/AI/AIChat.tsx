@@ -2,30 +2,17 @@
 
 import { Button, Input, Alert, Spinner } from '@heroui/react';
 import { useAIModel } from '@/hooks/useAIModel';
-import { useGrid } from '@/hooks/useGrid';
+import { useGrid } from '@/context/GridContext';
 import { parseAIResponse, buildAIPrompt } from '@/lib/ai/command-parser';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export function AIChat() {
-  const { client, isLoading: modelLoading, selectModel } = useAIModel();
+  const { client, isReady, isLoading: modelLoading } = useAIModel();
   const { state, dispatch } = useGrid();
   const [prompt, setPrompt] = useState('');
   const [isInferring, setIsInferring] = useState(false);
   const [response, setResponse] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [isReady, setIsReady] = useState(false);
-
-  // Check if model is ready
-  useEffect(() => {
-    const checkModelStatus = async () => {
-      if (client) {
-        const ready = await client.isReady();
-        setIsReady(ready);
-      }
-    };
-    
-    checkModelStatus();
-  }, [client]);
 
   const handleSendPrompt = async () => {
     if (!client || !isReady || !prompt.trim()) return;

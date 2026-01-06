@@ -6,14 +6,12 @@ export interface BaseAICommand {
 
 export interface AddComponentCommand extends BaseAICommand {
   type: 'add';
-  id: string;
+  id?: string;
   componentType: 'text' | 'media' | 'embed';
-  position: {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-  };
+  x: number;
+  y: number;
+  w: number;
+  h: number;
   content?: unknown;
   style?: GridItemStyle;
 }
@@ -26,19 +24,15 @@ export interface RemoveComponentCommand extends BaseAICommand {
 export interface ResizeComponentCommand extends BaseAICommand {
   type: 'resize';
   id: string;
-  size: {
-    w: number;
-    h: number;
-  };
+  w: number;
+  h: number;
 }
 
 export interface MoveComponentCommand extends BaseAICommand {
   type: 'move';
   id: string;
-  position: {
-    x: number;
-    y: number;
-  };
+  x: number;
+  y: number;
 }
 
 export interface UpdateStyleCommand extends BaseAICommand {
