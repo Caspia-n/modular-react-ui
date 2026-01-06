@@ -2,9 +2,11 @@
 
 import { GridCanvas } from '@/components/Grid/GridCanvas';
 import { useState } from 'react';
-import { useGrid } from '@/context/GridContext';
+import { useGrid } from '@/hooks/useGrid';
 import { Button } from '@heroui/react';
 import { generateId } from '@/lib/utils/id';
+import { ModelPicker } from '@/components/AI/ModelPicker';
+import { AIChat } from '@/components/AI/AIChat';
 
 function GridTestControls() {
   const { state, dispatch } = useGrid();
@@ -96,9 +98,40 @@ function GridTestControls() {
 }
 
 export default function Home() {
+  const [showAIPanel, setShowAIPanel] = useState(false);
+
   return (
     <main className="w-full h-screen" style={{ backgroundColor: 'var(--bg-canvas)' }}>
-      <GridTestControls />
+      <div className="w-full h-screen flex">
+        {/* Main Grid Area */}
+        <div className="flex-1 flex flex-col">
+          <div className="flex gap-2 p-4 bg-surface border-b border-subtle">
+            <Button size="sm" color="primary">
+              + Text Block
+            </Button>
+            <Button 
+              size="sm" 
+              variant={showAIPanel ? 'solid' : 'bordered'}
+              onPress={() => setShowAIPanel(!showAIPanel)}
+            >
+              🤖 AI
+            </Button>
+          </div>
+
+          <div className="flex-1 overflow-auto">
+            <GridTestControls />
+          </div>
+        </div>
+
+        {/* AI Sidebar */}
+        {showAIPanel && (
+          <div className="w-80 bg-canvas border-l border-subtle overflow-auto flex flex-col gap-4 p-4">
+            <h2 className="text-lg font-semibold text-text-primary">AI Assistant</h2>
+            <ModelPicker />
+            <AIChat />
+          </div>
+        )}
+      </div>
     </main>
   );
 }

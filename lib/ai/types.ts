@@ -5,9 +5,9 @@ export interface BaseAICommand {
 }
 
 export interface AddComponentCommand extends BaseAICommand {
-  type: 'add_component';
+  type: 'add';
   id: string;
-  componentType: string;
+  componentType: 'text' | 'media' | 'embed';
   position: {
     x: number;
     y: number;
@@ -19,12 +19,12 @@ export interface AddComponentCommand extends BaseAICommand {
 }
 
 export interface RemoveComponentCommand extends BaseAICommand {
-  type: 'remove_component';
-  ids: string[];
+  type: 'remove';
+  id: string;
 }
 
 export interface ResizeComponentCommand extends BaseAICommand {
-  type: 'resize_component';
+  type: 'resize';
   id: string;
   size: {
     w: number;
@@ -33,7 +33,7 @@ export interface ResizeComponentCommand extends BaseAICommand {
 }
 
 export interface MoveComponentCommand extends BaseAICommand {
-  type: 'move_component';
+  type: 'move';
   id: string;
   position: {
     x: number;
@@ -42,13 +42,13 @@ export interface MoveComponentCommand extends BaseAICommand {
 }
 
 export interface UpdateStyleCommand extends BaseAICommand {
-  type: 'update_style';
+  type: 'updateStyle';
   id: string;
   style: Partial<GridItemStyle>;
 }
 
 export interface UpdateContentCommand extends BaseAICommand {
-  type: 'update_content';
+  type: 'updateContent';
   id: string;
   content: unknown;
 }
